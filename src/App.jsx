@@ -1,22 +1,28 @@
-import { useState } from "react";
+import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
+import SignUpForm from "./components/SignUpForm";
 
-function Greeting({ name }) {
-  return <h1>Hello, I am {name}!</h1>;
+function HomePage() {
+  return (
+    <div>
+      <h1>Welcome to the Home Page</h1>
+      <p>This is the main content of the home page.</p>
+    </div>
+  );
 }
 
 function App() {
-  const name = "Nathan";
-  const [showGreeting, setShowGreeting] = useState(false);
-
-  function toggleGreeting() {
-    setShowGreeting(!showGreeting);
-  }
-
   return (
     <div>
-      <button onClick={toggleGreeting}>Toggle Greeting</button>
-      {showGreeting && <Greeting name={name} />}
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to="/signup">Sign Up</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/signup" element={<SignUpForm />} />
+        <Route path="*" element={<h1>404 Not Found</h1>} />
+      </Routes>
     </div>
   );
 }

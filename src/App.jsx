@@ -1,24 +1,23 @@
 import { useState } from "react";
 import "./App.css";
 
-function Greeting({ name }) {
-  return <h1>Hello, I am {name}!</h1>;
-}
-
 function App() {
-  const name = "Nathan";
-  const [showGreeting, setShowGreeting] = useState(false);
+  const [name, setName] = useState("");
 
-  function toggleGreeting() {
-    setShowGreeting(!showGreeting);
+  function handleInputChange(event) {
+    setName(event.target.value);
   }
 
   return (
     <div>
-      <button onClick={toggleGreeting}>Toggle Greeting</button>
-      {showGreeting && <Greeting name={name} />}
+      <input
+        type="text"
+        placeholder="Enter your name"
+        value={name}
+        onChange={handleInputChange}
+      />
     </div>
   );
-}
+} 
 
 export default App;
